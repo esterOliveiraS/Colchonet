@@ -5,4 +5,13 @@ class User < ApplicationRecord
   # Cria um atributo "virtual" no db chamado confirmation_password,
   # se ele estiver n igual ao da senha, o model n pode ser salvo.
   validates_confirmation_of :password
+
+  # Valida se a bio tem no mínino 30 caracteres
+  # E se a bio pode ou não pode está em branco. Nesse caso não pode.
+  validates_length_of :bio, :mininum => 30, :allow_blank => false
+
+  # Validando email
+  validates  :email, :presence :true,
+                     :format => { :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/},
+                     :unique => true 
 end
