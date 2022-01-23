@@ -11,7 +11,6 @@ class User < ApplicationRecord
   validates_length_of :bio, :mininum => 30, :allow_blank => false
 
   # Validando email
-  validates  :email, :presence :true,
-                     :format => { :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/},
-                     :unique => true 
+  validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
+  validates_uniqueness_of :email
 end
